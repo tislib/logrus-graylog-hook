@@ -206,6 +206,9 @@ func (hook *GraylogHook) sendEntry(entry graylogEntry) {
 		extra[k] = v
 	}
 
+	extra["logLevel"] = entry.Level
+	extra["logLevelStr"] = entry.Level.String()
+
 	if entry.Caller != nil {
 		extra["_file"] = entry.Caller.File
 		extra["_line"] = entry.Caller.Line
